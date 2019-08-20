@@ -1,0 +1,340 @@
+/* XL Device :1200px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+.hero-right-img img {
+	max-width: 100%;
+}
+.postion-img-three {
+	right: 0;
+}
+.number-postion-right {
+	right: 0;
+}
+
+}
+
+/* LG Device :992px. */
+@media (min-width: 992px) and (max-width: 1200px) {
+
+	.hero-right-img img {
+		max-width: 100%;
+	}
+	.hero-content h2 {
+		font-size: 55px;
+		margin-bottom: 30px;
+	}
+	.hero-content p {
+		font-size: 25px;
+		margin-bottom: 0;
+	}
+	.position-img {
+		display: none;
+	}
+	/*Header_END*/
+
+	.contact-info a, .contact-info p {
+		font-size: 18px;
+	}
+	.footer-logo {
+		padding-right: 40px;
+	}
+	.about-content h2 {
+		font-size: 60px;
+	}
+
+	a.about-btn {
+		font-size: 25px;
+		padding: 20px;
+	}
+	.service-item {
+		padding: 30px;
+	}
+
+
+	.section-title h2 {
+		font-size: 50px;
+	}
+	.postion-img-two,
+	.postion-img-three{
+	  display: none;
+	}
+
+}
+
+ 
+/* MD Device :768px. */
+@media (min-width: 768px) and (max-width: 992px) {
+
+	.hero-content h2 {
+		font-size: 30px;
+		margin-bottom: 15px;
+	}
+	.position-img {
+		display: none;
+	}
+	.hero-content p {
+		font-size: 18px;
+	}
+	.hero-right-img img {
+		max-width: 100%;
+	}
+	.header-email p {
+		font-size: 20px;
+	}
+	/*Header- end*/
+
+	.section-title h2 {
+		font-size: 40px;
+	}
+	a.subscribe-btn {
+		padding: 20px 0;
+	}
+	.contact-info a, .contact-info p {
+		font-size: 14px;
+	}
+	.footer-logo {
+		padding-right: 0;
+	}
+
+	a.about-btn {
+		font-size: 18px;
+		margin-top: 60px;
+	}
+	.about-content {
+		padding: 30px;
+	}
+	.about-content h2 {
+		font-size: 50px;
+		margin-bottom: 20px;
+	}
+	.about-content p{
+		font-size: 19px;
+	}
+	.about-area {
+		padding-top: 100px;
+		padding-bottom: 30px;
+	}
+	.service-text p {
+		font-size: 19px;
+	}
+
+	.postion-img-two,
+	.postion-img-three{
+	  display: none;
+	}
+
+	.price-list-inner ul li {
+		font-size: 22px;
+	}
+	.price-table {
+	    margin-top: 60px;
+	}
+	.price-section-title p {
+		font-size: 26px;
+		margin-bottom: 40px;
+	}
+	.price-section-title h2 {
+		font-size: 40px;
+	}
+	.box-item-list ul li {
+		padding: 20px 20px;
+		font-size: 22px;
+	}
+	.box-item-list ul li::after {
+		left: 10px;
+	}
+
+	.position-img-five {
+		bottom: 60px;
+		width: 30%;
+	}
+	.position-img-four {
+		top: 6%;
+		width: 30%;
+	}
+	.number-postion-img, .number-postion-right {
+	    display: none;
+	}
+
+}
+
+
+/* Extra small Device. */
+@media (max-width: 767px) {
+
+
+	/*Header*/
+	.header-email a p {
+		display: none;
+	}
+	.header-email i {
+		font-size: 24px;
+	}
+	.login-inner ul li:first-child {
+		padding-left: 0;
+	}
+	.login-inner ul li {
+		padding-left: 20px;
+	}
+	.login-inner ul li a {
+		font-size: 19px;
+	}
+	.hero-area {
+		height: auto;
+		padding-bottom: 30px;
+	}
+	.position-img {
+		display: none;
+	}
+	.hero-content {
+		padding-top: 100px;
+		text-align: center;
+	}
+	.hero-content h2 {
+		font-size: 30px;
+		margin-bottom: 15px;
+	}
+	.hero-content p {
+		font-size: 20px;
+	}
+	.hero-right-img img {
+		max-width: 100%;
+	}
+
+	.about-area {
+		padding-top: 100px;
+		padding-bottom: 30px;
+	}
+
+	a.about-btn {
+		font-size: 14px;
+		padding: 16px;
+		margin-top: 40px;
+	}
+	.about-content {
+		padding: 0;
+		margin-top: 30px;
+	}
+	.about-content h2 {
+		font-size: 40px;
+		margin-bottom: 30px;
+	}
+	.about-content p {
+		font-size: 19px;
+	}
+
+	.section-title h2 {
+		font-size: 30px;
+	}
+	.service-item {
+		padding: 30px;
+		height: 400px;
+	}
+	.service-text p {
+		font-size: 19px;
+	}
+	a.subscribe-btn {
+		font-size: 24px;
+		padding: 15px 0px;
+		width: 100%;
+	}
+	.subscribe-area {
+		padding: 60px 0;
+	}
+
+	.footer-logo {
+		padding-right: 0;
+	}
+	.contact-info {
+		margin-top: 30px;
+		text-align: center;
+	}
+	.footer-logo {
+	    text-align: center;
+	}
+	.footer-logo img{
+	    width: 80%;
+	    margin: 0 auto;
+	}
+	.footer-area {
+		padding: 60px 0;
+	}
+	.about-content {
+		text-align: center;
+	}
+	.about-button {
+		text-align: center;
+	}
+
+	.postion-img-two,
+	.postion-img-three{
+	  display: none;
+	}
+	.hero-right-img {
+		margin-top: 30px;
+	}
+
+
+	.price-table {
+		margin-top: 60px;
+	}
+	.price-section-title p {
+		font-size: 19px;
+		margin-bottom: 30px;
+	}
+	.price-section-title h2 {
+		font-size: 30px;
+	}
+	.price-section-title h2 span {
+		font-size: 25px;
+	}
+	.price-list-inner ul li {
+		font-size: 16px;
+	}
+	.price-list-inner {
+		height: 310px;
+	}
+	.price-inner h4 span {
+		font-size: 30px;
+		margin-top: 2px;
+	}
+	.price-button a {
+		padding: 10px 0;
+		font-size: 20px;
+	}
+	.price-inner h4 {
+		font-size: 19px;
+	}
+	.price-inner {
+		height: 150px;
+	}
+
+	.box-item-list ul li {
+		padding: 15px 25px;
+		font-size: 16px;
+	}
+	.box-item-list ul li::after {
+		left: 15px;
+	}
+	.box-item {
+		margin-top: 30px;
+	}
+	.box-top-inner h4 span {
+		font-size: 19px;
+		margin-top: 10px;
+	}
+	.box-top-inner {
+		height: 150px;
+	}
+	.hero-right-img.text-right {
+		text-align: center !important;
+	}
+	.position-img-four, .position-img-five {
+		display: none;
+	}
+	.number-postion-img, .number-postion-right {
+	    display: none;
+	}
+
+}
+
+
