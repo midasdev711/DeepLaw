@@ -52,3 +52,23 @@ div#custom-search input.form-control {
 	color: white;
 	border-color: #353844;
 }
+
+.sidebar-dark.nav-left-sidebar .navbar-nav .nav-link {
+	color: white;
+}
+
+.sidebar-dark .nav-divider {
+	color: white;
+}
+
+.sidebar-dark.nav-left-sidebar .nav-link i {
+	color: white;
+}
+
+.btn-outline-light {
+	color: white;
+}
+
+.navbar-right-top .nav-item .nav-link {
+	color: white;
+}
