@@ -79,7 +79,7 @@ $(document).ready(function(){
                                 <p>${contents[i].text}</p>
                             </div>
                         </div>
-                    </div>`
+                    </div>`;
                 }
                 contentmodule.append(htmlcontent);
                 var count = $(".chat-item").length;

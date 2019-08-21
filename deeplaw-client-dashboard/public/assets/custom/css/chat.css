@@ -1,13 +1,13 @@
 body {
-	background-color: #151824;
+	background-color: #151817;
 }
 
 .sidebar-dark {
-	background-color: #151824;
+	background-color: #151817;
 }
 
 .dashboard-wrapper .main-container {
-	background-color: #151824;
+	background-color: #151817;
 }
 
 .chat-module .chat-module-bottom {
@@ -27,7 +27,7 @@ body {
 }
 
 .chat-module .chat-module-body {
-	color: #151824;
+	color: #151817;
 }
 
 .dashboard-main-wrapper .content-container>.chat-module {
@@ -40,6 +40,6 @@ body {
 }
 
 .chat-item-author {
-	color: #151824;
+	color: #151817;
 	font-size: 2em;
 }

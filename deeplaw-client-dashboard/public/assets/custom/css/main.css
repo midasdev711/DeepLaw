@@ -11,7 +11,7 @@ span.chat-avatar {
 }
 
 .dashboard-header > nav {
-	background-color: #151824;
+	background-color: #151817;
 }
 
 .dashboard-header .navbar {
@@ -45,4 +45,10 @@ span.chat-avatar {
 
 .dashboard-main-wrapper .content-container>.chat-module .chat-item:not(:last-child) {
 	border-bottom: 1px solid #353844;
+}
+
+div#custom-search input.form-control {
+	background-color: #151817;
+	color: white;
+	border-color: #353844;
 }
