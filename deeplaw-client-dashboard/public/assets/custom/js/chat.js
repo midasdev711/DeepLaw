@@ -61,8 +61,15 @@ $(document).ready(function(){
                         diffString = Math.floor(seconddiff / (3600 * 24)) + " days ago";
                     }
 
-                    htmlcontent += `<div class="media chat-item">
-                        <span class="chat-avatar">${contents[i].sender.charAt(0).toUpperCase()}</span>
+                    htmlcontent += `<div class="media chat-item">`;
+                    if (contents[i].sender != "Elaina") {
+                        htmlcontent += `<span class="chat-avatar">${contents[i].sender.charAt(0).toUpperCase()}</span>`;
+                    }
+                    else {
+                        htmlcontent += `<img class="img-rounded img-responsive" src="./assets/custom/images/Deeplaw_Fevicon.png" height="48">`;
+                    }
+                        
+                    htmlcontent += `
                         <div class="media-body">
                             <div class="chat-item-title">
                                 <span class="chat-item-author">${contents[i].sender}</span>
@@ -76,7 +83,7 @@ $(document).ready(function(){
                 }
                 contentmodule.append(htmlcontent);
                 var count = $(".chat-item").length;
-                $(".chat-module-body").scrollTop(146 * count);
+                $(".chat-module-body").scrollTop(145 * count);
             }
         });
     }
@@ -109,7 +116,7 @@ $(document).ready(function(){
                 </div>`;
             contentmodule.append(htmlcontent);
             var count = $(".chat-item").length;
-            $(".chat-module-body").scrollTop(146 * count);
+            $(".chat-module-body").scrollTop(145 * count);
             axios.post("/api/chat", {
               content: content
             },

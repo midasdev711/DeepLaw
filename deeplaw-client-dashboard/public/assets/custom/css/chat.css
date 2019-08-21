@@ -1,24 +1,25 @@
 body {
-	background-color: #252834;
+	background-color: #151824;
 }
 
 .sidebar-dark {
-	background-color: #252834;
+	background-color: #151824;
 }
 
 .dashboard-wrapper .main-container {
-	background-color: #252834;
+	background-color: #151824;
 }
 
 .chat-module .chat-module-bottom {
 	border-top: none;
-	background-color: #252834;
+	background-color: white;
 	padding-right: 1em;
 }
 
 .chat-module {
 	padding: 1em;
 	padding-right: 0;
+	background-color: white;
 }
 
 .chat-module-top form {
@@ -26,7 +27,12 @@ body {
 }
 
 .chat-module .chat-module-body {
-	color: lightgrey;
+	color: #151824;
+}
+
+.dashboard-main-wrapper .content-container>.chat-module {
+	padding-right: 0;
+	margin-right: 1em;
 }
 
 .chat-module .chat-module-body .chat-item {
@@ -34,6 +40,6 @@ body {
 }
 
 .chat-item-author {
-	color: lightgrey;
+	color: #151824;
 	font-size: 2em;
 }

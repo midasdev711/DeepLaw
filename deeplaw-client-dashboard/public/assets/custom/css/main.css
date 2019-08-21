@@ -1,6 +1,4 @@
 span.nav-avatar {
-	/*font-family: "DJB On the Spot";*/
-	/*font-family: "KGCountingStars";*/
 	font-family: "Red Signal";
 	font-size: 1.5em;
 	line-height: 1em;
@@ -13,7 +11,7 @@ span.chat-avatar {
 }
 
 .dashboard-header > nav {
-	background-color: #252834;
+	background-color: #151824;
 }
 
 .dashboard-header .navbar {
