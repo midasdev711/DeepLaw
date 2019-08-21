@@ -1,14 +1,18 @@
 body {
-	background-color: #0e0c28;
+	background-color: #252834;
+}
+
+.sidebar-dark {
+	background-color: #252834;
 }
 
 .dashboard-wrapper .main-container {
-	background-color: #0e0c28;
+	background-color: #252834;
 }
 
 .chat-module .chat-module-bottom {
 	border-top: none;
-	background-color: #0e0c28;
+	background-color: #252834;
 	padding-right: 1em;
 }
 
@@ -23,7 +27,10 @@ body {
 
 .chat-module .chat-module-body {
 	color: lightgrey;
-	padding-right: 1em;
+}
+
+.chat-module .chat-module-body .chat-item {
+	margin-right: 2em;
 }
 
 .chat-item-author {
