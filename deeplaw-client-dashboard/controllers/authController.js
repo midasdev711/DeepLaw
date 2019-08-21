@@ -82,12 +82,22 @@ exports.getMe = (req, res) => {
   if (!token[1])
     return res.status(401).send({ auth: false, message: "No token provided." });
 
-    jwt.verify(token[1], config.secret, function(err, decoded) {
+  jwt.verify(token[1], config.jwtSecret, function(err, decoded) {
     if (err)
       return res
         .status(500)
         .send({ auth: false, message: "Failed to authenticate token." });
-
-    res.status(200).send(decoded);
+    User.findOne({ _id: decoded._id }).then(result => {
+      if (result) {
+        var data = {
+          userId: result["_id"],
+          username: result["username"]
+        };
+        res.status(200).send(data);
+      }
+    })
+    .catch(err => {
+      res.status(401).send({ error: err });
+    });
   });
 };

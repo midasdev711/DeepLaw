@@ -1,155 +1,29 @@
-$(document).ready(function(){
-
-    $(".chat-module-body").scrollTop($(".chat-module-body").height());
-
-    var token = localStorage.getItem("token");
-    if (!token) {
-        window.location.href = "/";
-    }
-
-    var getChats = function() {
+$(document).ready(function() {
+	var getMe = function() {
         var token = localStorage.getItem("token");
-        axios.get("/api/getChats", 
+        if (!token) {
+        	window.location.href = "/";
+        }
+        axios.get("/api/me", 
         {
             headers: {
                 Authorization: "bearer " + token //the token is a variable which holds the token
             }
         })
         .then((res) => {
-            if (res.data.status == "success") {
-                var username = localStorage.getItem("username");
-                $("h5.nav-user-name").text(username);
-                var contents = res.data.data;
-                var contentmodule = $(".chat-module-body");
-                contentmodule.empty();
-                var htmlcontent = ``;
-                contents.sort((a, b) => parseFloat(a.date) - parseFloat(b.date));
-                console.log(contents);
-                for (var i = 0; i < contents.length; i++) {
-                    var now = new Date();
-                    var contentdate = new Date(contents[i].date);
-
-                    var diff = moment.utc(moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(contentdate,"DD/MM/YYYY HH:mm:ss")));
-                    var daydiff = diff.format("DD");
-                    var monthdiff = diff.format("MM");
-                    var hourdiff = diff.format("HH");
-                    var minutediff = diff.format("mm");
-                    var diffString = "";
-                    var seconddiff = diff / 1000;
-                    if (seconddiff < 60) {
-                        diffString = "Just now";
-                    }
-                    if (seconddiff > 60 && seconddiff < 120) {
-                        diffString = "A miniute ago";
-                    }
-                    if (seconddiff > 120 && seconddiff < 3600) {
-                        diffString = Math.floor(seconddiff / 60) + " miniutes ago";
-                    }
-                    if (seconddiff > 3600) {
-                        if (seconddiff / 3600 == 1) {
-                            diffString = "An hour ago";
-                        }
-                        else {
-                            diffString = Math.floor(diff / 3600000) + " hours ago";
-                        }
-                    }
-                    if ( seconddiff / 3600 == 24 )
-                    {
-                        diffString = "A day ago";
-                    }
-                    if (seconddiff / 3600 >= 48) {
-                        diffString = Math.floor(seconddiff / (3600 * 24)) + " days ago";
-                    }
-
-                    htmlcontent += `<div class="media chat-item">
-                        <img alt="William" src="../assets/images/avatar-1.jpg" class="rounded-circle user-avatar-lg">
-                        <div class="media-body">
-                            <div class="chat-item-title">
-                                <span class="chat-item-author">${contents[i].sender}</span>
-                                <span>${diffString}</span>
-                            </div>
-                            <div class="chat-item-body">
-                                <p>${contents[i].text}</p>
-                            </div>
-                        </div>
-                    </div>`
-                }
-                contentmodule.append(htmlcontent);
-                var count = $(".chat-item").length;
-                $(".chat-module-body").scrollTop(120 * count);
-            }
+        	let data = res['data'];
+        	localStorage.setItem('username', data['username']);
+        	var username = localStorage.getItem("username");
+        	var avatarletter = username.slice(0,1).toUpperCase()
+        	console.log(avatarletter, typeof(username));
+        	$("span.nav-avatar").text(avatarletter);
         });
     }
-    getChats();
-    
 
-    $('body').on('click', '#logout', function(event) {
-        localStorage.clear();
-        window.location.href = "/";
-    });
+    getMe();
 
-    $('body').on('keyup', 'form.chat-form textarea', function(event) {
-        var content = $(this).val();
-        if (event.keyCode == 13 && !event.shiftKey) {
-            var token = localStorage.getItem("token");
-            var username = localStorage.getItem("username");
-            var contentmodule = $(".chat-module-body");
-            var htmlcontent = `
-                <div class="media chat-item">
-                    <img alt="William" src="../assets/images/avatar-1.jpg" class="rounded-circle user-avatar-lg">
-                    <div class="media-body">
-                        <div class="chat-item-title">
-                            <span class="chat-item-author">${username}</span>
-                            <span>Just now</span>
-                        </div>
-                        <div class="chat-item-body">
-                            <p>${content}</p>
-                        </div>
-                    </div>
-                </div>`;
-            contentmodule.append(htmlcontent);
-            var count = $(".chat-item").length;
-            $(".chat-module-body").scrollTop(120 * count);
-            axios.post("/api/chat", {
-              content: content
-            },
-            {
-                headers: {
-                    Authorization: "bearer " + token //the token is a variable which holds the token
-                }
-            })
-            .then((res) => {
-                // Join new team if this is new chat box
-                // getChats();
-                // console.log(res);
-                if (res["data"]["status"] == 'success') {
-                    $(this).val("");
-                    getChats();
-                }
-                    
-                //     htmlcontent = `<div class="media chat-item">
-                //         <img alt="William" src="../assets/images/avatar-1.jpg" class="rounded-circle user-avatar-lg">
-                //         <div class="media-body">
-                //             <div class="chat-item-title">
-                //                 <span class="chat-item-author">Elaina</span>
-                //                 <span>Just now</span>
-                //             </div>
-                //             <div class="chat-item-body">
-                //                 <p>${res["data"]['data']}</p>
-                //             </div>
-                //         </div>
-                //     </div>
-                //     `;
-                    
-                //     contentmodule.append(htmlcontent);
-                //     var count = $(".chat-item").length;
-                //     $(".chat-module-body").scrollTop(120 * count);
-                // }
-            })
-            .catch(() => {
-                console.log("Sorry. Server unavailable. ");
-            }); 
-        }
-        
+	$('body').on('click', '#navbarNav>ul>li.nav-item>a', function(event) {
+        $("#navbarNav a").removeClass('active');
+        $(this).addClass('active');
     });
-})
+});

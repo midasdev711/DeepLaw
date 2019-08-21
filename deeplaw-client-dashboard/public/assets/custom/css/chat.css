@@ -23,6 +23,7 @@ body {
 
 .chat-module .chat-module-body {
 	color: lightgrey;
+	padding-right: 1em;
 }
 
 .chat-item-author {

@@ -50,6 +50,6 @@ router.post("/auth/login", authController.login);
 
 router.get("/auth/logout", authController.logout);
 
-router.get("/me", authController.getMe);
+router.get("/api/me", authController.getMe);
 
 module.exports = router;

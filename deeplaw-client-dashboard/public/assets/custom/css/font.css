@@ -1,0 +1,23 @@
+@font-face {
+	font-family: "DJB On the Spot";
+	src: url("../fonts/DJB On the Spot.ttf");
+	/*src: url("CustomFont.woff") format("woff"),
+	url("CustomFont.otf") format("opentype"),
+	url("CustomFont.svg#filename") format("svg");*/
+}
+
+@font-face {
+	font-family: "KGCountingStars";
+	src: url("../fonts/KGCountingStars.ttf");
+	/*src: url("CustomFont.woff") format("woff"),
+	url("CustomFont.otf") format("opentype"),
+	url("CustomFont.svg#filename") format("svg");*/
+}
+
+@font-face {
+	font-family: "Red Signal";
+	src: url("../fonts/Red Signal.ttf");
+	/*src: url("CustomFont.woff") format("woff"),
+	url("CustomFont.otf") format("opentype"),
+	url("CustomFont.svg#filename") format("svg");*/
+}

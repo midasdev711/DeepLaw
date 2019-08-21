@@ -1,0 +1,13 @@
+span.nav-avatar {
+	/*font-family: "DJB On the Spot";*/
+	/*font-family: "KGCountingStars";*/
+	font-family: "Red Signal";
+	font-size: 1.5em;
+	line-height: 1em;
+}
+
+span.chat-avatar {
+	font-family: "Red Signal";
+	font-size: 2.5em;
+	line-height: 1.3em;
+}

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
     <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" href="../assets/custom/css/font.css">
+    <link rel="stylesheet" href="../assets/custom/css/main.css">
     <link rel="stylesheet" href="../assets/custom/css/chat.css">
     <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <title>DeepLaw Client Dashboard</title>
@@ -42,38 +44,14 @@
                                     <div class="notification-title"> Notification</div>
                                     <div class="notification-list">
                                         <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action active">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham</span>is now following you
-                                                        <div class="notification-date">2 days ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="../assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
+                                            <!-- <a href="#" class="list-group-item list-group-item-action">
                                                 <div class="notification-info">
                                                     <div class="notification-list-user-img"><img src="../assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
                                                     <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
                                                         <div class="notification-date">2 min ago</div>
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </a> -->
                                         </div>
                                     </div>
                                 </li>
@@ -86,7 +64,7 @@
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                                 <li class="connection-list">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
                                             <a href="#" class="connection-item"><img src="../assets/images/github.png" alt="" > <span>Github</span></a>
                                         </div>
@@ -96,18 +74,7 @@
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
                                             <a href="#" class="connection-item"><img src="../assets/images/dropbox.png" alt="" > <span>Dropbox</span></a>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/bitbucket.png" alt=""> <span>Bitbucket</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/mail_chimp.png" alt="" ><span>Mail chimp</span></a>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="../assets/images/slack.png" alt="" > <span>Slack</span></a>
-                                        </div>
-                                    </div>
+                                    </div> -->
                                 </li>
                                 <li>
                                     <div class="conntection-footer"><a href="#">More</a></div>
@@ -115,7 +82,10 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="nav-avatar"></span>
+                                <!-- <img src="../assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"> -->
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name"></h5>
@@ -130,6 +100,7 @@
                 </div>
             </nav>
         </div>
+        <div class="clearfix"></div>
         <!-- ============================================================== -->
         <!-- end navbar -->
         <!-- ============================================================== -->
@@ -149,33 +120,24 @@
                                 Menu
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Elaina Chat <span class="badge badge-success">6</span></a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a class="nav-link active" href="#"><i class="fa fa-fw fa-user-circle"></i>Elaina Chat <span class="badge badge-success">6</span></a>
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>Apps <span class="badge badge-secondary">New</span></a>
-                                <div id="submenu-7" class="collapse submenu" style="">
+                                <a class="nav-link" href="#"><i class="fas fa-fw fa-inbox"></i>Documents</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><i class="fas fa-fw fa-inbox"></i>Projects</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-inbox"></i>Projects</a>
+                                <div id="submenu-8" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="inbox.html">Inbox</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="email-details.html">Email Detail</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="email-compose.html">Email Compose</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="message-chat.html">Message Chat</a>
-                                        </li>
                                     </ul>
                                 </div>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>
@@ -192,11 +154,9 @@
                 <div class="navbar bg-white breadcrumb-bar border-bottom">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Overview</a>
+                            <!-- <li class="breadcrumb-item"><a href="index.html">Overview</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="pages-app.html">App Pages</a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Chat</li>
+                            <li class="breadcrumb-item active" aria-current="page">Chat</li> -->
                         </ol>
                     </nav>
                     <div class="dropdown">
@@ -230,7 +190,7 @@
                         </div>
                         <div class="chat-module-bottom">
                             <form class="chat-form">
-                                <textarea class="form-control mb-4" placeholder="Type message" rows="1"></textarea>
+                                <textarea class="form-control mb-2" placeholder="Type message" rows="1"></textarea>
                                 <div class="chat-form-buttons">
                                     <button type="button" class="btn btn-link">
                                         <i class="far fa-smile"></i>
@@ -822,6 +782,7 @@
     <script src="../assets/vendor/dropzone/dropzone.js"></script>
     <script src="../assets/libs/js/main-js.js"></script>
     <script src="../assets/custom/js/main.js"></script>
+    <script src="../assets/custom/js/chat.js"></script>
 </body>
  
 </html>
