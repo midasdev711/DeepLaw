@@ -40,17 +40,19 @@ class DeepDialogFlow {
       queryInput: {
         text: {
           // The query to send to the dialogflow agent
-          text: text,
+          text: text.replace('\n', ''),
           // The language used by the client (en-US)
           languageCode: 'en-US',
         },
       },
     };
+    console.log('requestd: ', request)
   
     // Send request and log result
     const responses = await this.sessionClient.detectIntent(request);
     console.log('Detected intent');
     const result = responses[0].queryResult;
+    console.log('Intent: ', result);
     console.log(`  Query: ${result.queryText}`);
     console.log(`  Response: ${result.fulfillmentText}`);
     if (result.intent) {
@@ -71,7 +73,8 @@ exports.addChat = async function(req, res) {
     if (!result) {
       var chat = new Chat({username: req.user.username, content : [{
           sender: req.user.username,
-          text: content
+          text: content,
+          date: Date.now()
         }, {
           sender: "Elaina",
           text: resultText
@@ -81,8 +84,8 @@ exports.addChat = async function(req, res) {
     }
     else {
       // var chatContent = result.content;
-      result.content.push({sender: req.user.username, text: content});
-      result.content.push({sender: "Elaina", text: resultText});
+      result.content.push({sender: req.user.username, text: content, date: Date.now()});
+      result.content.push({sender: "Elaina", text: resultText, date: Date.now()});
       result.save();
       // Chat.update({username: req.user.username}, {content: chatContent}, upsert = true);
     }
