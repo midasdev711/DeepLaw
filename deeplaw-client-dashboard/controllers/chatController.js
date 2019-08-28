@@ -16,7 +16,7 @@ const structjson = require('./structJson.js');
 
 class DeepDialogFlow {
   constructor() {
-    let privateKey = (process.env.NODE_ENV=="production") ? process.env.DIALOGFLOW_PRIVATE_KEY : process.env.DIALOGFLOW_PRIVATE_KEY
+    let privateKey = (process.env.NODE_ENV == "production") ? process.env.DIALOGFLOW_PRIVATE_KEY : process.env.DIALOGFLOW_PRIVATE_KEY
     privateKey = _.replace(privateKey, new RegExp("\\\\n", "\g"), "\n")
     let clientEmail = process.env.DIALOGFLOW_CLIENT_EMAIL
     let config = {
@@ -31,39 +31,14 @@ class DeepDialogFlow {
     // this.sessionPath = this.sessionClient.sessionPath('abbi-cvflsy', sessionId);
   }
 
-  async chat(text, username) {
-    
-
-    // Create a new session
+  getSessionPath() {
     const sessionId = uuid.v4();
-    const sessionPath = this.sessionClient.sessionPath('abbi-cvflsy', sessionId);
-    // User.findOne({username: username}).then(result => {
-    //   if (result) {
-    //     if (result['sessionPath']) {
-    //       sessionPath = result['sessionPath'];
-    //     }
-    //     else {
-    //       result['sessionPath'] = sessionPath
-    //       result.save()
-    //     }
-    //   }
-    //   else {
-    //     return false;
-    //   }
-    // }).catch(err => {
-    //   return err;
-    // });
-    // The text query request.
-    // const request = {
-    //   session: sessionPath,
-    //   queryInput: {
-    //     event: {
-    //       name: 'basic-info-followup-2',
-    //       parameters: structjson.jsonToStructProto({text: "hi"}),
-    //       languageCode: 'en-US',
-    //     },
-    //   },
-    // };
+    var sessionPath = this.sessionClient.sessionPath('abbi-cvflsy', sessionId);
+    return sessionPath;
+  }
+
+  async chat(text, sessionPath) {
+    console.log("sessionPath", sessionPath);
     const request = {
       session: sessionPath,
       queryInput: {
@@ -72,39 +47,49 @@ class DeepDialogFlow {
           text: text.replace('\n', ''),
           // The language used by the client (en-US)
           languageCode: 'en-US',
-        },
-        event: {
-          name: 'basic-info-followup-2',
-          languageCode: 'en-US',
         }
       }
     };
     console.log('requestd: ', request)
-  
     // Send request and log result
     const responses = await this.sessionClient.detectIntent(request);
-    console.log('Detected intent: ', request);
+    // console.log('Detected intent: ', request);
     const result = responses[0].queryResult;
-    console.log('Intent: ', result);
-    console.log(`  Query: ${result.queryText}`);
-    console.log(`  Response: ${result.fulfillmentText}`);
-    if (result.intent) {
-      console.log(`  Intent: ${result.intent.displayName}`);
-    } else {
-      console.log(`  No intent matched.`);
-    }
+    // console.log('Intent: ', result);
+    // console.log(`  Query: ${result.queryText}`);
+    // console.log(`  Response: ${result.fulfillmentText}`);
+    // if (result.intent) {
+    //   console.log(`  Intent: ${result.intent.displayName}`);
+    // } else {
+    //   console.log(`  No intent matched.`);
+    // }
+    
     return result.fulfillmentText;
   }
 }
 
 myDialogflow = new DeepDialogFlow();
 
-exports.addChat = async function(req, res) {
+exports.addChat = async function (req, res) {
   let content = req.body.content;
-  let resultText = await myDialogflow.chat(content, req.user.username);
+  let sessionPath = null;
+  console.log("-----");
+  console.log(req.session);
+  if (req.session['sessionPath']) {
+    sessionPath = req.session.sessionPath;
+  }
+  else {
+    req.session['sessionPath'] = myDialogflow.getSessionPath();
+    sessionPath = req.session['sessionPath'];
+  }
+  let resultText = await myDialogflow.chat(content, sessionPath);
+  console.log(resultText);
+
   Chat.findOne({username: req.user.username}).then(result => {
+
     if (!result) {
-      var chat = new Chat({username: req.user.username, content : [{
+      var chat = new Chat({
+        username: req.user.username, content: [{
           sender: req.user.username,
           text: content,
           date: Date.now()
@@ -117,22 +102,22 @@ exports.addChat = async function(req, res) {
     }
     else {
       // var chatContent = result.content;
-      result.content.push({sender: req.user.username, text: content, date: Date.now()});
-      result.content.push({sender: "Elaina", text: resultText, date: Date.now()});
+      result.content.push({ sender: req.user.username, text: content, date: Date.now() });
+      result.content.push({ sender: "Elaina", text: resultText, date: Date.now() });
       result.save();
       // Chat.update({username: req.user.username}, {content: chatContent}, upsert = true);
     }
-    res.json({ status: "success", data: resultText });
+    // res.json({ status: "success", data: resultText });
   }).catch(err => {
-    res.json({status: "error"});
+    res.json({ status: "error" });
   })
   return res.json({ status: "success", data: resultText });
 };
 
 // Display list of all books.
-exports.getChats = function(req, res) {
+exports.getChats = function (req, res) {
   let user = req.user;
-  Chat.findOne({username: user.username}).then(result => {
+  Chat.findOne({ username: user.username }).then(result => {
     if (!result) {
       res.json({ status: "warning", data: "No chat" });
     }
@@ -151,6 +136,6 @@ exports.getChats = function(req, res) {
 };
 
 // Display detail page for a specific book.
-exports.book_detail = function(req, res) {
+exports.book_detail = function (req, res) {
   res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
 };

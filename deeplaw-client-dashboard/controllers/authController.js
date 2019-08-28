@@ -73,7 +73,12 @@ exports.login = (req, res) => {
 
 // Display detail page for a specific book.
 exports.logout = (req, res) => {
-  res.redirect("/");
+  req.session.destroy((err) => {
+      if(err) {
+          return console.log(err);
+      }
+      res.redirect('/');
+  });
 };
 
 exports.getMe = (req, res) => {

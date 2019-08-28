@@ -4,6 +4,7 @@ var http = require('http'),
     path = require('path'),
     methods = require('methods'),
     express = require('express'),
+    session = require('express-session'),
     morgan  = require('morgan'),
     passport = require('passport'),
     bodyParser = require('body-parser'),
@@ -18,7 +19,12 @@ var isProduction = process.env.NODE_ENV === 'production';
 // Create global app object
 var app = express();
 
-
+app.use(session({
+  secret: 'keyboard cat',
+  // resave: false,
+  // saveUninitialized: true,
+  // cookie: { secure: true }
+}));
 // Normal express config defaults
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
