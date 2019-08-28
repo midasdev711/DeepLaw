@@ -14,7 +14,10 @@ const userSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true
-	}
+	},
+  sessionPath: {
+    type: String
+  }
 });
 
 userSchema.plugin(passportLocalMongoose);

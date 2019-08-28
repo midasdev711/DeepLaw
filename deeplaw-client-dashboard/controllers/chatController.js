@@ -7,6 +7,8 @@ const _ = require("lodash");
 const dialogflow = require('dialogflow');
 const uuid = require('uuid');
 
+const structjson = require('./structJson.js');
+
 /**
  * Send a query to the dialogflow agent, and return the query result.
  * @param {string} projectId The project to be used
@@ -25,16 +27,43 @@ class DeepDialogFlow {
     }
     // A unique identifier for the given session
     this.sessionClient = new dialogflow.SessionsClient(config);
+    // const sessionId = uuid.v4();
+    // this.sessionPath = this.sessionClient.sessionPath('abbi-cvflsy', sessionId);
   }
 
-  async chat(text, projectId = 'abbi-cvflsy') {
-    const sessionId = uuid.v4();
+  async chat(text, username) {
+    
 
     // Create a new session
-    // console.log('config: ', config)
-    const sessionPath = this.sessionClient.sessionPath(projectId, sessionId);
-    
+    const sessionId = uuid.v4();
+    const sessionPath = this.sessionClient.sessionPath('abbi-cvflsy', sessionId);
+    // User.findOne({username: username}).then(result => {
+    //   if (result) {
+    //     if (result['sessionPath']) {
+    //       sessionPath = result['sessionPath'];
+    //     }
+    //     else {
+    //       result['sessionPath'] = sessionPath
+    //       result.save()
+    //     }
+    //   }
+    //   else {
+    //     return false;
+    //   }
+    // }).catch(err => {
+    //   return err;
+    // });
     // The text query request.
+    // const request = {
+    //   session: sessionPath,
+    //   queryInput: {
+    //     event: {
+    //       name: 'basic-info-followup-2',
+    //       parameters: structjson.jsonToStructProto({text: "hi"}),
+    //       languageCode: 'en-US',
+    //     },
+    //   },
+    // };
     const request = {
       session: sessionPath,
       queryInput: {
@@ -44,13 +73,17 @@ class DeepDialogFlow {
           // The language used by the client (en-US)
           languageCode: 'en-US',
         },
-      },
+        event: {
+          name: 'basic-info-followup-2',
+          languageCode: 'en-US',
+        }
+      }
     };
     console.log('requestd: ', request)
   
     // Send request and log result
     const responses = await this.sessionClient.detectIntent(request);
-    console.log('Detected intent');
+    console.log('Detected intent: ', request);
     const result = responses[0].queryResult;
     console.log('Intent: ', result);
     console.log(`  Query: ${result.queryText}`);
@@ -68,7 +101,7 @@ myDialogflow = new DeepDialogFlow();
 
 exports.addChat = async function(req, res) {
   let content = req.body.content;
-  let resultText = await myDialogflow.chat(content);
+  let resultText = await myDialogflow.chat(content, req.user.username);
   Chat.findOne({username: req.user.username}).then(result => {
     if (!result) {
       var chat = new Chat({username: req.user.username, content : [{
