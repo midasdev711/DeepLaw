@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
   },
   status: {
     type: String
-  }
+  },
   createdAt: {
     type: Date,
     default: Data.now()
