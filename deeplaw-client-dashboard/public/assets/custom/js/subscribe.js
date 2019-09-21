@@ -101,12 +101,17 @@ $(document).ready(function() {
 		})
 		.then((res) => {
 			var result = res['data'];
+			if (result['message'] == "Error") {
+				toastr.error(result['error']);
+				return;
+			}
 	    localStorage.setItem("token", result['token']);
       localStorage.setItem("username", result['userId']);
       window.location.href = "/chat";
 		})
-		.catch(() => {
-		   console.log("Sorry. Server unavailable. ");
+		.catch((res) => {
+			console.log(res);
+		  console.log("Sorry. Server unavailable. ");
 		}); 
 	}
 

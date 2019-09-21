@@ -246,14 +246,14 @@ exports.charge = (req, res) => {
           });
         })
         .catch(error => {
-          res.send({message: "Error", error: error });
+          res.json({message: "Error", error: error });
         });
       }
       else if (status == "incomplete") {
-        res.send({message: "Error", error: "Checkout Failed"});
+        res.json({message: "Error", error: "Checkout Failed"});
       }      
     } else {
-      res.status(401).send({ error: "Username Exists" });
+      res.json({message: "Error", error: "Username Exists" });
     }
   });
 };
