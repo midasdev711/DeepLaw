@@ -11,6 +11,38 @@ $(document).ready(function() {
 		subscriptionType = $(this).attr('id');
 	});
 
+	$('#next-step').click(function() {
+		var email = $('#email').val();
+	  var fullname = $('#fullname').val();
+	  var password = $('#password').val();
+	  var companyname = $('#companyname').val();
+	  var invalid = false;
+	  if (email == undefined || email == "" || !email.includes("@")) {
+	  	toastr.warning('Please input valid information');
+	  	invalid = true;
+	  }
+	  if (fullname == undefined || fullname == "") {
+	  	toastr.warning('Please input valid information');
+	  	invalid = true;
+	  }
+	  if (password == undefined || password == "") {
+	  	toastr.warning('Please input valid information');
+	  	invalid = true;
+	  }
+	  if (companyname == undefined || companyname == "") {
+	  	toastr.warning('Please input valid information');
+	  	invalid = true;
+	  }
+	  if (invalid) {
+	  	setTimeout(function() { 
+	  		$("#terms-modal").modal('hide');
+	  		$('#signup-modal').modal('show');
+	  	}, 700);
+	  }
+	  var sourceURL = '/terms';
+	  $('#terms-modal iframe').attr('src', sourceURL + '?person=' + fullname + '&client=' + companyname)
+	});
+
 	// Create a Stripe client.
 	var stripe = Stripe('pk_test_feoFyzJjxnuwplzuHSuK52MF00gkFEspJ2');
 
@@ -75,6 +107,7 @@ $(document).ready(function() {
 	  var email = $('#email').val();
 	  var fullname = $('#fullname').val();
 	  var password = $('#password').val();
+	  var companyname = $('#companyname').val();
 	  if (email == undefined || email == "" || !email.includes("@")) {
 	  	toastr.warning('Please input valid information');
 	  	return;
@@ -87,11 +120,16 @@ $(document).ready(function() {
 	  	toastr.warning('Please input valid information');
 	  	return;
 	  }
+	  if (companyname == undefined || companyname == "") {
+	  	toastr.warning('Please input valid information');
+	  	return;
+	  }
 
 	  var content = {
 	  	"email": email,
 	  	"password": password,
 	  	"fullname": fullname,
+	  	"companyname": companyname,
 	  	"stripeToken": token.id,
 	  	"subType": subscriptionType
 	  }

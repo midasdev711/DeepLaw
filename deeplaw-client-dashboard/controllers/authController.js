@@ -167,6 +167,7 @@ exports.charge = (req, res) => {
   let content = req.body.content;
   let password = content.password;
   let username = content.fullname;
+  let companyname = content.companyname;
   let email = content.email;
   let subType = content.subType;
   let stripeToken = content.stripeToken;
@@ -175,8 +176,6 @@ exports.charge = (req, res) => {
 
   let customer_id;
   let status;
-
-  console.log(email, password, subType, stripeToken);
 
   var passwordHash = crypto
     .createHash("md5")
@@ -226,6 +225,7 @@ exports.charge = (req, res) => {
           username: username,
           email: email,
           password: passwordHash,
+          companyName: companyname,
           subscriptionType: subType,
           status: "active",
           accessCode: accessCode
@@ -235,9 +235,6 @@ exports.charge = (req, res) => {
           var token = jwt.sign({ _id: result["_id"] }, config.jwtSecret, {
             expiresIn: 86400 // expires in 24 hours
           });
-
-          console.log("----------------------------");
-          console.log(result["_id"]);
 
           res.json({
             userId: result["_id"],

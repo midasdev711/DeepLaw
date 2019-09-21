@@ -455,7 +455,7 @@
     <div class="modal" id='signup-modal' tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<form action="/auth/charge" method="POST">
+				<form action="/auth" method="POST">
 					<div class="card bg-light">
 						<article class="card-body">
 							<h4 class="mt-3">Create Account</h4>
@@ -468,7 +468,7 @@
 						    <div class="form-group input-group">
 						    	<div class="input-group-prepend">
 								    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-								 </div>
+								</div>
 						        <input name="email" id="email" class="form-control" placeholder="Email address" type="email">
 						    </div> <!-- form-group// -->
 						    <div class="form-group input-group">
@@ -476,6 +476,12 @@
 								    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 								</div>
 						        <input class="form-control" id="password" name='password' placeholder="Create password" type="password">
+						    </div> <!-- form-group// -->
+						    <div class="form-group input-group">
+								<div class="input-group-prepend">
+								    <span class="input-group-text"> <i class="fa fa-home"></i> </span>
+								 </div>
+						        <input name="companyname" id="companyname" class="form-control" placeholder="Company name" type="text">
 						    </div> <!-- form-group// -->
 						    <div class="form-row">
 							    <label>
@@ -492,7 +498,7 @@
 							<button id="next-step" data-toggle="modal" data-target="#terms-modal" data-dismiss="modal">Next</button>
 						  	<!-- <button id="submit-payment">Submit Payment</button> -->
 						</article>
-						</div> <!-- card.// -->
+					</div> <!-- card.// -->
 				</form>
 			</div>
 		</div>
@@ -502,7 +508,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content" >
 				<h3>Engagement Agreement</h3>
-				<iframe src="/terms"></iframe>
+				<iframe src="/terms" id="agreements"></iframe>
 				<form action="/auth/charge" method="post" id="payment-form">
 					<button id="prev-step" data-toggle="modal" data-target="#signup-modal" data-dismiss="modal">Prev</button>
 				  	<button id="submit-payment">Agree & Submit</button>
