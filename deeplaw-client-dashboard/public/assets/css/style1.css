@@ -428,6 +428,46 @@ Main Components
     font-size: 1.4rem;
   }
 }
+
+#Checkout {
+      position: static;
+    height: auto;
+    padding: 1.3em 3em;
+    color: #FFFFFF;
+    border-radius: 2px;
+    background-color: #424446;
+    font-size: 1.4rem;
+    text-indent: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  display: flex;
+  width: fit-content;
+  margin: 5em auto;
+}
+.cd-check {
+    display: flex;
+    width: fit-content;
+    margin: 2em auto 0;
+    align-items: center;
+}
+.cd-check input{
+    width: 25px;
+    height: 25px;
+    margin: 0 8px;
+}
+.cd-check-description{
+    max-width: 80%;
+    line-height: 1.75;
+    margin: 2em auto;
+    text-align: center;
+}
+.cd-box {
+    display: grid;
+    margin: 5em auto 3em;
+    max-width: 60%;
+    border: 3px solid black;
+}
+
 .cd-pricing-body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -445,6 +485,32 @@ Main Components
 .cd-pricing-features {
   width: 600px;
 }
+@media only screen and (max-width: 768px) {
+	.cd-pricing-features {
+	  display: flex;
+	}
+  .cd-box {
+    max-width: 100%;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .cd-check-description{
+    line-height: 2;
+  }
+   .cd-box {
+    font-size: 9.5px;
+   }
+  .cd-check input{
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+  }
+}
+@media only screen and (max-width: 275px){
+  .cd-box {
+    font-size: 7.5px;
+   }
+}
 .cd-pricing-features:after {
   content: "";
   display: table;
@@ -452,6 +518,7 @@ Main Components
 }
 .cd-pricing-features li {
   width: auto;
+  min-width: fit-content;
   float: left;
   padding: 1.6em 1em;
   font-size: 1.4rem;

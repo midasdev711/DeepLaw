@@ -1,0 +1,153 @@
+#subscription-modal .divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#subscription-modal .divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;   
+    z-index: 2;
+}
+
+#subscription-modal .divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.form-control {
+    font-size: 1em;
+}
+
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.form-row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.modal button {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+    background: #32325d;
+    white-space: nowrap;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 14px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    float: left;
+    margin-left: 6px;
+    margin-right: 6px;
+    margin-top: 28px;
+    cursor: pointer;
+}
+
+#signup-modal .card-body{
+    padding: 2em;
+}
+
+#signup-modal button#next-step {
+    float: right;
+}
+
+#signup-modal h4 {
+    font-size: 2.1em;
+    margin-bottom: 0.7em;
+    font-weight: 300;
+}
+
+#signup-modal label {
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 300;
+}
+
+#card-element {
+    width: 90%;
+}
+
+.cd-select {
+    cursor: pointer;
+}
+
+#terms-modal .modal-content {
+    height: 100%;
+    padding: 2em;
+}
+
+#terms-modal iframe {
+    height: 80%;
+    background-color: #fff;
+    border: 1px solid #aaa;
+}
+
+#terms-modal h3 {
+    font-size: 2.3em;
+    margin-bottom: 0.7em;
+}
+
+#terms-modal form {
+    display: flex;
+}
+
+#terms-modal #prev-step {
+    margin-right: auto;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 700px;
+        margin: 1.75rem auto;
+    }
+
+    #terms-modal .modal-dialog {
+        max-width: 1000px;
+        height: 700px;
+        margin: 1.75rem auto;
+    }
+}

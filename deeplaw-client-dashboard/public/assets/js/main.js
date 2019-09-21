@@ -41,6 +41,61 @@
 	});
 
 
+	$(".complete").slideUp();
+    $(".completeb").slideUp();
+    $("#read-btn").click(function() {
+        if ($(this).hasClass("read_more")) {
+            $(this).children().css("transform","rotate(180deg)");
+            $(".complete").slideDown();
+            $(this).removeClass("read_more");
+        }
+        else{
+            $(this).children().css("transform","rotate(0deg)");
+            $(".complete").slideUp();
+            $(this).addClass("read_more");
+        }
+    });
+    $("#read-btnb").click(function() {
+        
+        if ($(this).hasClass("read_more")) {
+            $(this).children().css("transform","rotate(180deg)");
+            $(".completeb").slideDown();
+            $(this).removeClass("read_more");
+        }
+        else{
+            $(this).children().css("transform","rotate(0deg)");
+            $(".completeb").slideUp();
+            $(this).addClass("read_more");
+        }
+    });
+
+    // Functions Code
+	function get_total_price() {
+		var $x = 0
+		$(".cd-popular").each(function() {
+			$x += Number($(this).find("a.cd-select").attr("data-value"));
+		});
+		if ($("#add-box")[0].checked) {
+			$x += Number($("#add-box").attr("data-value"));
+		}
+		return "$" + $x;
+	} 
+
+
+	// Jquery Code
+	$("a.cd-select").click(function() {
+		$(this).parents("ul.cd-pricing-list").find(".cd-popular").removeClass("cd-popular");
+		$(this).parents("ul.cd-pricing-list > li").addClass("cd-popular");
+	});
+
+
+	// Total Price 
+	// $("#Checkout").click(function(){
+	// 	alert(get_total_price());
+	// });
+
+
+
 
 
 	});

@@ -41,15 +41,23 @@ router.get("/chat", (req, res, next) => {
   res.sendFile(path.join(__basedir + '/public/pages/chat.html'));
 });
 
-router.post("/auth/register", authController.register);
+router.get("/terms", (req, res, next) => {
+  res.sendFile(path.join(__basedir + '/public/pages/terms.html'));
+});
+
+// ChatController
 
 router.post("/api/chat", chatController.addChat);
 router.get("/api/getChats", chatController.getChats);
 
+// AuthController
+
+router.post("/auth/register", authController.register);
+router.post("/auth/charge", authController.charge);
 router.post("/auth/login", authController.login);
-
 router.get("/auth/logout", authController.logout);
-
+router.get("/webhook", authController.webhook);
 router.get("/api/me", authController.getMe);
+router.get('/clr', authController.clear);
 
 module.exports = router;

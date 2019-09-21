@@ -29,7 +29,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-mongoose.connect('mongodb+srv://newtest:incredible@cluster0-utcji.mongodb.net/test?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://newtest:incredible@cluster0-atfmx.mongodb.net/test?retryWrites=true&w=majority')
 // tell the app to parse HTTP body messages
 // pass the passport middleware
 app.use(passport.initialize());

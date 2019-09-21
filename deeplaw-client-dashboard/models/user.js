@@ -3,6 +3,10 @@ const bcrypt = require("bcrypt");
 var passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
+  accessCode: {
+    type: String,
+    required: true
+  }, 
 	username: {
 		type: String,
 		required: true
@@ -17,6 +21,16 @@ const userSchema = new mongoose.Schema({
 	},
   sessionPath: {
     type: String
+  },
+  subscriptionType: {
+    type: String
+  },
+  status: {
+    type: String
+  }
+  createdAt: {
+    type: Date,
+    default: Data.now()
   }
 });
 

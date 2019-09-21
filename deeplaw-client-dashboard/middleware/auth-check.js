@@ -26,6 +26,10 @@ module.exports = (req, res, next) => {
       if (userErr || !user) {
         return res.status(401).end();
       }
+
+      if (user.status == "deactive") {
+        return res.status(401).end();
+      }
       // pass user details onto next route
       req.user = user
       return next();

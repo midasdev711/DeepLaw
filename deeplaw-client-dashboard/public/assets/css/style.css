@@ -255,7 +255,7 @@ a.about-btn {
     text-align: center;
     margin-top: 30px;
     background: #fff;
-    height: 510px;
+    height: 654px;
     padding: 60px;
     transition: .3s;
     position: relative;
@@ -437,7 +437,7 @@ a.subscribe-btn {
     padding: 30px 0;
     text-align: center;
     font-size: 24px;
-    color: #006eb8(255, 255, 255);
+    color: #a5b3bd;
 }
 
 
@@ -756,4 +756,8 @@ a.subscribe-btn {
 
 .service-item:hover .service-icon img:nth-child(2) {
     display: block;
+}
+i.fa-arrow-down {
+    transition: all 0.8s ease;
+    font-size: 1.4em;
 }
