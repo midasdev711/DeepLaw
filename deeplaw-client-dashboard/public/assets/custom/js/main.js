@@ -12,7 +12,7 @@ $(document).ready(function() {
     }
     var tokenFromURL = getParamValue('key');
     var token = localStorage.getItem("token");
-    if (!tokenFromURL) {
+    if (tokenFromURL) {
         localStorage.setItem('token', tokenFromURL);
     }
 	var getMe = function() {
