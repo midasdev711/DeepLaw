@@ -10,7 +10,7 @@ $(document).ready(function(){
         {
             var pArr = qArray[i].split('='); //split key and value
             if (pArr[0] == paramName) 
-                return replaceAll(pArr[1], '%20', ' '); //return value
+                return pArr[1]; //return value
         }
     }
     var tokenFromURL = getParamValue('key');
