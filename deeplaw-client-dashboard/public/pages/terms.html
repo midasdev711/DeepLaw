@@ -65,7 +65,19 @@
 
 	</p>
 
+	<script >
+		function decode(param) {
+			var str_esc=escape(param);
+		    return unescape(str_esc);
+		}
+	</script>
+
 	<script type="text/javascript">
+		function replaceAll(string, search, replacement) {
+		    var target = string;
+		    return target.split(search).join(replacement);
+		}
+
 		function getParamValue(paramName)
 		{
 		    var url = window.location.search.substring(1); //get rid of "?" in querystring
@@ -74,7 +86,7 @@
 		    {
 		        var pArr = qArray[i].split('='); //split key and value
 		        if (pArr[0] == paramName) 
-		            return pArr[1]; //return value
+		            return replaceAll(pArr[1], '%20', ' '); //return value
 		    }
 		}
 		var person = getParamValue('person');

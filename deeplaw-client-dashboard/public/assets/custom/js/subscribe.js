@@ -152,5 +152,4 @@ $(document).ready(function() {
 		  console.log("Sorry. Server unavailable. ");
 		}); 
 	}
-
 });
