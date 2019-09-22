@@ -2,10 +2,24 @@ $(document).ready(function(){
 
     $(".chat-module-body").scrollTop($(".chat-module-body").height());
 
+    function getParamValue(paramName)
+    {
+        var url = window.location.search.substring(1); //get rid of "?" in querystring
+        var qArray = url.split('&'); //get key-value pairs
+        for (var i = 0; i < qArray.length; i++) 
+        {
+            var pArr = qArray[i].split('='); //split key and value
+            if (pArr[0] == paramName) 
+                return replaceAll(pArr[1], '%20', ' '); //return value
+        }
+    }
+    var tokenFromURL = getParamValue('key');
+
     var token = localStorage.getItem("token");
-    if (!token) {
+    if (!token && !tokenFromURL) {
         window.location.href = "/";
     }
+    localStorage.setItem("token", tokenFromURL);
 
     var getChats = function() {
         var token = localStorage.getItem("token");
