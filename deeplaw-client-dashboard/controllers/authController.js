@@ -35,7 +35,7 @@ exports.register = (req, res) => {
         res.send({
           userId: result["_id"],
           message: "Created Succesfully",
-          token: token
+          token: token,
         });
       })
       .catch(error => {
@@ -239,7 +239,8 @@ exports.charge = (req, res) => {
           res.json({
             userId: result["_id"],
             message: "Created Succesfully",
-            token: token
+            token: token,
+            accessCode: accessCode
           });
         })
         .catch(error => {

@@ -144,8 +144,8 @@ $(document).ready(function() {
 				return;
 			}
 	    localStorage.setItem("token", result['token']);
-      localStorage.setItem("username", result['userId']);
-      window.location.href = "/chat";
+      	localStorage.setItem("username", result['userId']);
+      		window.location.href = "/chat";
 		})
 		.catch((res) => {
 			console.log(res);
