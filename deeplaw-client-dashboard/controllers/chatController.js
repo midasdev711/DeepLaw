@@ -95,7 +95,8 @@ exports.addChat = async function (req, res) {
           date: Date.now()
         }, {
           sender: "Elaina",
-          text: resultText
+          text: resultText,
+          date: Date.now()
         }]
       })
       chat.save()
