@@ -105,48 +105,32 @@ exports.addChat = async function (req, res) {
   return res.json({ status: "success", data: resultText });
 };
 
-// When users sign up, Elaina says hello first.
-exports.sendFirstHelloToElaina = async function (sessionPath, username) {
-  let resultText = await myDialogflow.chat('Hi', sessionPath);
-
-  Chat.findOne({username: username}).then(result => {
-    if (!result) {
-      var chat = new Chat({
-        username: username, 
-        content: [{
-          sender: "Elaina",
-          text: resultText,
-          date: Date.now()
-        }]
-      })
-      chat.save()
-    }
-  }).catch(err => {
-    return { status: "error"};
-  });
-  return { status: 'success', text: resultText, date: Date.now()};
-};
-
 // Display list of all books.
 exports.getChats = async function (req, res) {
   let user = req.user;
   let chatcontent = [];
-  Chat.findOne({ username: user.username }).then(result => {
+  Chat.findOne({ username: user.username }).then((result) => {
     if (!result) {
       req.session['sessionPath'] = myDialogflow.getSessionPath();
       sessionPath = req.session['sessionPath'];
-      var firstResult = await sendFirstHelloToElaina(sessionPath, user.username);
-      if (firstResult['status'] == 'success') {
-        chatcontent = []
-        chatcontent.push({
-          sender: 'Elaina',
-          text: firstResult['text'],
-          date: firstResult['date']
-        });
-        res.json({ status: "success", data: chatcontent });
-      }
-      else
-        res.json({ status: "warning", data: "No chat" });
+      myDialogflow.chat('Hi', sessionPath).then(resultText => {
+        var chat = new Chat({
+          username: user.username, 
+          content: [{
+            sender: "Elaina",
+            text: resultText,
+            date: Date.now()
+          }]
+        })
+        chat.save()
+        content = [{
+          sender: "Elaina",
+          text: resultText,
+          date: Date.now()
+        }]
+        res.json({ status: "success", data: content});
+      });
+      
     }
     else {
       chatcontent = []
