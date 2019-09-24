@@ -51,18 +51,8 @@ class DeepDialogFlow {
       }
     };
     console.log('requestd: ', request)
-    // Send request and log result
     const responses = await this.sessionClient.detectIntent(request);
-    // console.log('Detected intent: ', request);
     const result = responses[0].queryResult;
-    // console.log('Intent: ', result);
-    // console.log(`  Query: ${result.queryText}`);
-    // console.log(`  Response: ${result.fulfillmentText}`);
-    // if (result.intent) {
-    //   console.log(`  Intent: ${result.intent.displayName}`);
-    // } else {
-    //   console.log(`  No intent matched.`);
-    // }
     
     return result.fulfillmentText;
   }
@@ -115,12 +105,48 @@ exports.addChat = async function (req, res) {
   return res.json({ status: "success", data: resultText });
 };
 
+// When users sign up, Elaina says hello first.
+exports.sendFirstHelloToElaina = async function (sessionPath, username) {
+  let resultText = await myDialogflow.chat('Hi', sessionPath);
+
+  Chat.findOne({username: username}).then(result => {
+    if (!result) {
+      var chat = new Chat({
+        username: username, 
+        content: [{
+          sender: "Elaina",
+          text: resultText,
+          date: Date.now()
+        }]
+      })
+      chat.save()
+    }
+  }).catch(err => {
+    return { status: "error"};
+  });
+  return { status: 'success', text: resultText, date: Date.now()};
+};
+
 // Display list of all books.
-exports.getChats = function (req, res) {
+exports.getChats = async function (req, res) {
   let user = req.user;
+  let chatcontent = [];
   Chat.findOne({ username: user.username }).then(result => {
     if (!result) {
-      res.json({ status: "warning", data: "No chat" });
+      req.session['sessionPath'] = myDialogflow.getSessionPath();
+      sessionPath = req.session['sessionPath'];
+      var firstResult = await sendFirstHelloToElaina(sessionPath, user.username);
+      if (firstResult['status'] == 'success') {
+        chatcontent = []
+        chatcontent.push({
+          sender: 'Elaina',
+          text: firstResult['text'],
+          date: firstResult['date']
+        });
+        res.json({ status: "success", data: chatcontent });
+      }
+      else
+        res.json({ status: "warning", data: "No chat" });
     }
     else {
       chatcontent = []
