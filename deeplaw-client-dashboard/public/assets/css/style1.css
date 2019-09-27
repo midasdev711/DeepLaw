@@ -354,7 +354,7 @@ Main Components
   text-transform: uppercase;
 }
 .cd-popular .cd-pricing-header {
-  background-color: #006eb8;
+  background-color: #004777;
 }
 @media only screen and (min-width: 768px) {
   .cd-pricing-header {
@@ -366,7 +366,7 @@ Main Components
     background-color: transparent;
   }
   .cd-popular .cd-pricing-header {
-    color: #006eb8;
+    color: #004777;
     background-color: transparent;
   }
   .cd-secondary-theme .cd-pricing-header {
@@ -390,7 +390,7 @@ Main Components
   text-transform: uppercase;
 }
 .cd-popular .cd-duration {
-  color: #006eb8;
+  color: #004777;
 }
 .cd-duration::before {
   content: '/';
@@ -407,7 +407,7 @@ Main Components
     color: rgba(23, 61, 80, 0.4);
   }
   .cd-popular .cd-currency, .cd-popular .cd-duration {
-    color: #006eb8;
+    color: #004777;
   }
   .cd-secondary-theme .cd-currency, .cd-secondary-theme .cd-duration {
     color: #464646;
@@ -632,10 +632,10 @@ Main Components
     background-color: #575757;
   }
   .cd-popular .cd-select {
-    background-color: #006eb8;
+    background-color: #004777;
   }
   .no-touch .cd-popular .cd-select:hover {
-    background-color: #006eb8;
+    background-color: #004777;
   }
   .cd-secondary-theme .cd-popular .cd-select {
     background-color: #000000;
