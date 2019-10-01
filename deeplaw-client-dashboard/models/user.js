@@ -185,7 +185,6 @@ const userSchema = new mongoose.Schema({
     employeeName: String,
     requireMayRequire: String,
     humanResourcesDepartmentName: String,
-    administration: String,
     union: String,
     position: String
   }
