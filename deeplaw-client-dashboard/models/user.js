@@ -187,10 +187,11 @@ const userSchema = new mongoose.Schema({
     employername: String
   },
   Background_Check_Policy: {
-    employername: String,
-    requirement: String,
-    position: String,
-    administration: String
+    employeeName: String,
+    requireMayRequire: String,
+    humanResourcesDepartmentName: String,
+    union: String,
+    position: String
   }
 
 });
