@@ -113,7 +113,8 @@ exports.getChats = async function (req, res) {
     if (!result) {
       req.session['sessionPath'] = myDialogflow.getSessionPath();
       sessionPath = req.session['sessionPath'];
-      myDialogflow.chat('Hi', sessionPath).then(resultText => {
+      var firstHello = 'Hi';
+      myDialogflow.chat(firstHello, sessionPath).then(resultText => {
         var chat = new Chat({
           username: user.username, 
           content: [{
@@ -130,7 +131,6 @@ exports.getChats = async function (req, res) {
         }]
         res.json({ status: "success", data: content});
       });
-      
     }
     else {
       chatcontent = []

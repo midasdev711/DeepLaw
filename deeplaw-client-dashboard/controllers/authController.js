@@ -65,7 +65,7 @@ exports.login = (req, res) => {
         var token = jwt.sign({ _id: result._id }, config.jwtSecret, {
           expiresIn: 86400 // expires in 24 hours
         });
-        res.send({ auth: true, token: token });
+        res.send({ auth: true, token: token, role: result.role });
       } else {
         res.status(401).send({ error: "Incorrect Credentials" });
       }
@@ -100,7 +100,8 @@ exports.getMe = (req, res) => {
       if (result) {
         var data = {
           userId: result["_id"],
-          username: result["username"]
+          username: result["username"],
+          role: result['role']
         };
         res.status(200).send(data);
       }
