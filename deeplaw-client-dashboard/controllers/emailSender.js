@@ -10,11 +10,12 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Display list of all books.
 exports.sendEmail = (from, to, subject, text, html) => {
-  const msg = {
-    to: to,
-    from: from,
-    subject: subject,
-    text: text,
-    html: html
-  sgMail.send(msg);
+  	const msg = {
+	    to: to,
+	    from: from,
+	    subject: subject,
+	    text: text,
+	    html: html
+	}
+  	sgMail.send(msg);
 };

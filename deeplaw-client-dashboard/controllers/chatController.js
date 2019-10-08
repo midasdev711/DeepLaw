@@ -2,12 +2,17 @@ require("dotenv").config();
 var config = require("../config");
 var Chat = require('../models/chat');
 var User = require('../models/user');
+var DocApprove = require('../models/docapprove');
 const _ = require("lodash");
 
 const dialogflow = require('dialogflow');
 const uuid = require('uuid');
 
 const structjson = require('./structJson.js');
+
+var emailSender = require('./emailSender.js');
+
+var htmlDocxJs = require("html-docx-js")
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
@@ -38,7 +43,6 @@ class DeepDialogFlow {
   }
 
   async chat(text, sessionPath) {
-    console.log("sessionPath", sessionPath);
     const request = {
       session: sessionPath,
       queryInput: {
@@ -50,7 +54,6 @@ class DeepDialogFlow {
         }
       }
     };
-    console.log('requestd: ', request)
     const responses = await this.sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     
@@ -60,11 +63,15 @@ class DeepDialogFlow {
 
 myDialogflow = new DeepDialogFlow();
 
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 exports.addChat = async function (req, res) {
   let content = req.body.content;
   let sessionPath = null;
-  console.log("-----");
-  console.log(req.session);
   if (req.session['sessionPath']) {
     sessionPath = req.session.sessionPath;
   }
@@ -73,7 +80,69 @@ exports.addChat = async function (req, res) {
     sessionPath = req.session['sessionPath'];
   }
   let resultText = await myDialogflow.chat(content, sessionPath);
-  console.log(resultText);
+
+  if (resultText.includes('we’re done')) {
+    const fs = require('fs');
+
+    // Select Approver
+    var approver;
+    var admins = await User.find({role: "admin"});
+    if (!admins) {
+      // handle errors
+      console.log("there is no admin");
+    }
+    else {
+      approver = admins[getRandomInt(0, admins.length - 1)];
+    }
+
+    var currentUser = await User.findOne({email: req.user.email});
+
+    var info = currentUser['Background_Check_Policy'];
+
+    await emailSender.sendEmail('spoon.jeremy@gmail.com', approver['email'], 'Please approve the documents from Deeplaw', 'test', '<strong>There are documents from ' + req.user.username + '</strong>');
+    let data = fs.readFileSync(__dirname + '/../template/test.htm', 'utf8');
+
+    String.prototype.replaceAll = function(search, replacement) {
+      var target = this;
+      return target.replace(new RegExp(search, 'g'), replacement);
+    };
+    console.log(info);
+    console.log("--------")
+
+    data = data.replaceAll('{{d.employeeName}}', info['employeeName']);
+    data = data.replaceAll('{{d.requireMayRequire}}', info['requireMayRequire']);
+    data = data.replaceAll('{{d.humanResourcesDepartmentName}}', info['humanResourcesDepartmentName']);
+    data = data.replaceAll('{{d.position}}', info['position']);
+
+    var converted = htmlDocxJs.asBlob(data);
+    var doclink = '/../public/docs/' + req.user.accessCode + '-Background Check Policy IL.docx';
+    fs.writeFile(__dirname + doclink, converted, function(err) {
+      if (err) throw err;
+    });
+
+    var docapprove = await DocApprove.findOne({user: req.user.email})
+    if (!docapprove) {
+      docapprove = new DocApprove({
+        user: req.user.email,
+        approver: approver['email'],
+        link: [{
+          url: doclink,
+          status: "Not approved",
+          date: Date.now()
+        }]
+      });
+      docapprove.save();
+    }
+    else {
+      docapprove['link'].push({
+        url: doclink,
+        status: "Not approved",
+        date: Date.now()
+      });
+      docapprove.save();
+    }
+
+  }
 
   Chat.findOne({username: req.user.username}).then(result => {
 

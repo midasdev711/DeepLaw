@@ -34,9 +34,14 @@ $(document).ready(function() {
             data: JSON.stringify(data),
             contentType: "application/json",
             success: (res) => {
+                console.log(res);
                 localStorage.setItem("token", res.token);
                 localStorage.setItem("username", username);
-                window.location.href = "/chat";
+                if (res.role == "admin") {
+                    window.location.href = "/approve";
+                }
+                else
+                    window.location.href = "/chat";
             }
         });
     });

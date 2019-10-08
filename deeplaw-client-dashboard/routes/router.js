@@ -16,6 +16,7 @@ var userModel = require("../models/user");
 
 var chatController = require("../controllers/chatController");
 var authController = require("../controllers/authController");
+var docController = require("../controllers/docController");
 
 router.get("/", (req, res, next) => {
   res.sendFile(path.join(__basedir + '/public/pages/login.html'));
@@ -41,10 +42,23 @@ router.get("/chat", (req, res, next) => {
   res.sendFile(path.join(__basedir + '/public/pages/chat.html'));
 });
 
+router.get("/approve", (req, res, next) => {
+  res.sendFile(path.join(__basedir + '/public/pages/approve.html'));
+});
+
+router.get("/documents", (req, res, next) => {
+  res.sendFile(path.join(__basedir + '/public/pages/documents.html'));
+});
+
 router.get("/terms", (req, res, next) => {
   res.sendFile(path.join(__basedir + '/public/pages/terms.html'));
 });
 
+// Doc list
+
+router.get("/api/getDocsToApprove", docController.getDocsToApprove);
+router.get("/api/getApprovedDocs", docController.getApprovedDocs);
+router.post("/api/approveDoc", docController.approveDoc);
 // ChatController
 
 router.post("/api/chat", chatController.addChat);
