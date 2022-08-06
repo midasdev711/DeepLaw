@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dialogflow": "^0.10.3",
     "dotenv": "^8.1.0",
